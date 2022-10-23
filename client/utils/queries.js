@@ -37,8 +37,8 @@ export const QUERY_ME = gql`
 `;
 
 export const QUERY_BOOKS = gql `
-{
- books {
+query books($title: String) {
+ books(title: $title) {
     authors: [String], 
     description: String, 
     title: String, 
@@ -53,7 +53,7 @@ export const  QUERY_SAVEDBOOKS = gql `
     query savedBooks($username: String) {
         savedBooks(username: $username) {
             authors: [String], 
-            description: String, 
+            description: String,
             title: String, 
             bookId: String, 
             image: String, 
