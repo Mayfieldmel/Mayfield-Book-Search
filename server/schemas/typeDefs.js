@@ -41,7 +41,6 @@ type Query {
     addUser(username: String!, email: String!, password: String!): Auth
     saveBook(input: bookObj): User
     removeBook(bookId: String): User
-
   }
 `;
 
