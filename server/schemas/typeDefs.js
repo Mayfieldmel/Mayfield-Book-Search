@@ -34,7 +34,8 @@ type Query {
     me: User
     users: [User]
     user(username: String!): User
-    books(username: String): [Book]
+    books(title: String): [Book]
+    savedBooks(username: String): [Book]
   }
   type Mutation {
     login(email: String!, password: String!): Auth
