@@ -8,12 +8,12 @@ export const QUERY_USER = gql`
       email
       bookCount
       books {
-        authors: [String], 
-        description: String, 
-        title: String, 
-        bookId: String, 
-        image: String, 
-        link: String
+        authors 
+        description 
+        title
+        bookId 
+        image 
+        link
     }
   }
 `;
@@ -26,12 +26,12 @@ export const QUERY_ME = gql`
       email
       bookCount
       books {
-      authors: [String], 
-      description: String, 
-      title: String, 
-      bookId: String, 
-      image: String, 
-      link: String
+      authors
+      description
+      title
+      bookId 
+      image 
+      link
     }
   }
 `;
@@ -39,12 +39,12 @@ export const QUERY_ME = gql`
 export const QUERY_BOOKS = gql `
 query books($title: String) {
  books(title: $title) {
-    authors: [String], 
-    description: String, 
-    title: String, 
-    bookId: String, 
-    image: String, 
-    link: String
+    authors 
+    description
+    title
+    bookId
+    image 
+    link
   }
 }
 `;
@@ -52,12 +52,12 @@ query books($title: String) {
 export const  QUERY_SAVEDBOOKS = gql `
     query savedBooks($username: String) {
         savedBooks(username: $username) {
-            authors: [String], 
-            description: String,
-            title: String, 
-            bookId: String, 
-            image: String, 
-            link: String
+            authors
+            description
+            title
+            bookId 
+            image 
+            link
         }
     }
 `

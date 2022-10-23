@@ -24,17 +24,15 @@ export const ADD_USER = gql`
   }
 `;
 
-export const ADD_BOOKS = gql`
-  mutation addReaction($thoughtId: ID!, $reactionBody: String!) {
-    addReaction(thoughtId: $thoughtId, reactionBody: $reactionBody) {
-      _id
-      reactionCount
-      reactions {
-        _id
-        reactionBody
-        createdAt
-        username
-      }
+export const SAVE_BOOKS = gql`
+  mutation saveBook($bookId: String) {
+    saveBook(bookId: $bookId) {
+        authors
+        description
+        title
+        bookId
+        image
+        link
     }
   }
 `;
