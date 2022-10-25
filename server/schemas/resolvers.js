@@ -67,7 +67,7 @@ const resolvers = {
             return User
         }
       },
-      sremoveBook: async (parent, args, context) => {
+      removeBook: async (parent, args, context) => {
         if (context.user) {
             
             await User.findByIdAndUpdate(
