@@ -31,7 +31,7 @@ const startApolloServer = async (typeDefs, resolvers) => {
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join(__dirname, '../client/build')));
 }
-console.log("line 34", process.env.NODE_ENV)
+
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '../client/build/index.html'));
 });
@@ -47,6 +47,4 @@ db.once('open', () => {
 };
 
 // Call the async function to start the server
-console.log("line 50")
 startApolloServer(typeDefs, resolvers);
-console.log("line 52")
