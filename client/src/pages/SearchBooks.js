@@ -73,6 +73,8 @@ const SearchBooks = () => {
           input: bookToSave
         },
       });
+      console.log("response", response)
+      
       if (!response) {
         throw new Error("something went wrong!");
       }
@@ -81,7 +83,9 @@ const SearchBooks = () => {
     } catch (err) {
       console.error(err);
     }
+    
   };
+  console.log("stateObj", savedBookIds)
 
   return (
     <>
