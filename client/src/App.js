@@ -4,7 +4,7 @@ import SearchBooks from "./pages/SearchBooks";
 import SavedBooks from "./pages/SavedBooks";
 import Navbar from "./components/Navbar";
 // import ApolloProvider destructured  from apollo
-import { ApolloProvider } from "@apollo/react-hooks";
+import { ApolloProvider } from '@apollo/client';
 // import the apollo client from apollo boost
 import ApolloClient from "apollo-boost";
 

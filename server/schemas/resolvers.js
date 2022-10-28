@@ -1,5 +1,5 @@
 // importing Authentication error from apollo servers to show the error message
-const { AuthenticationError } = require("apollo-server-errors");
+const { AuthenticationError } = require("apollo-server-express");
 // importing User from the modules
 const { User } = require("../models");
 // importing signToken from utils
@@ -46,7 +46,7 @@ const resolvers = {
         const updatedUser = await User.findOneAndUpdate(
           { _id: context.user._id },
           { $addToSet: { savedBooks: input } },
-          { new: true, runValidators: true }
+          { new: true }
         );
         return updatedUser;
       }

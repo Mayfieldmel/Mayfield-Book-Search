@@ -13,7 +13,7 @@ import Auth from "../utils/auth";
 import { searchGoogleBooks } from "../utils/API";
 import { saveBookIds, getSavedBookIds } from "../utils/localStorage";
 import { SAVE_BOOK } from "../utils/mutations";
-import { useMutation } from "@apollo/react-hooks";
+import { useMutation } from "@apollo/client";
 
 const SearchBooks = () => {
   // create state for holding returned google api data
@@ -34,7 +34,7 @@ const SearchBooks = () => {
   const [saveBook] = useMutation(SAVE_BOOK);
 
   // create method to search for books and set state on form submit
-  const handleFormSubmit = async event => {
+  const handleFormSubmit = async (event) => {
     event.preventDefault();
 
     if (!searchInput) {
@@ -50,7 +50,7 @@ const SearchBooks = () => {
 
       const { items } = await response.json();
 
-      const bookData = items.map(book => ({
+      const bookData = items.map((book) => ({
         bookId: book.id,
         authors: book.volumeInfo.authors || ["No author to display"],
         title: book.volumeInfo.title,
@@ -66,9 +66,9 @@ const SearchBooks = () => {
   };
 
   // create function to handle saving a book to our database
-  const handleSaveBook = async bookId => {
+  const handleSaveBook = async (bookId) => {
     // find the book in `searchedBooks` state by the matching id
-    const bookToSave = searchedBooks.find(book => book.bookId === bookId);
+    const bookToSave = searchedBooks.find((book) => book.bookId === bookId);
 
     // get token
     const token = Auth.loggedIn() ? Auth.getToken() : null;
@@ -106,7 +106,7 @@ const SearchBooks = () => {
                 <Form.Control
                   name="searchInput"
                   value={searchInput}
-                  onChange={e => setSearchInput(e.target.value)}
+                  onChange={(e) => setSearchInput(e.target.value)}
                   type="text"
                   size="lg"
                   placeholder="Search for a book"
@@ -129,7 +129,7 @@ const SearchBooks = () => {
             : "Search for a book to begin"}
         </h2>
         <CardColumns>
-          {searchedBooks.map(book => {
+          {searchedBooks.map((book) => {
             return (
               <Card key={book.bookId} border="dark">
                 {book.image ? (
@@ -146,13 +146,13 @@ const SearchBooks = () => {
                   {Auth.loggedIn() && (
                     <Button
                       disabled={savedBookIds?.some(
-                        savedBookId => savedBookId === book.bookId
+                        (savedBookId) => savedBookId === book.bookId
                       )}
                       className="btn-block btn-info"
                       onClick={() => handleSaveBook(book.bookId)}
                     >
                       {savedBookIds?.some(
-                        savedBookId => savedBookId === book.bookId
+                        (savedBookId) => savedBookId === book.bookId
                       )
                         ? "This book has already been saved!"
                         : "Save this Book!"}
