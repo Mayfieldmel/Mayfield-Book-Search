@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import { Form, Button, Alert } from "react-bootstrap";
-import { useMutation } from "@apollo/client";
-import Auth from "../utils/auth";
+// import use mutation
+import { useMutation } from "@apollo/react-hooks";
+// import the ADD User from the utils
 import { ADD_USER } from "../utils/mutations";
+
+import Auth from "../utils/auth";
 
 const SignupForm = () => {
   // set initial form state
@@ -15,15 +18,16 @@ const SignupForm = () => {
   const [validated] = useState(false);
   // set state for alert
   const [showAlert, setShowAlert] = useState(false);
-  // use mutation
+
+  // declared the addUser with the useMutation
   const [addUser, { error }] = useMutation(ADD_USER);
 
-  const handleInputChange = (event) => {
+  const handleInputChange = event => {
     const { name, value } = event.target;
     setUserFormData({ ...userFormData, [name]: value });
   };
 
-  const handleFormSubmit = async (event) => {
+  const handleFormSubmit = async event => {
     event.preventDefault();
 
     // check if form has everything (as per react-bootstrap docs)
@@ -34,15 +38,15 @@ const SignupForm = () => {
     }
 
     try {
-      // execute addUser mutation and pass in variable data from form
       const { data } = await addUser({
         variables: { ...userFormData },
       });
       Auth.login(data.addUser.token);
-    } catch (e) {
-      console.error(e);
+    } catch (err) {
+      console.error(error);
       setShowAlert(true);
     }
+
     setUserFormData({
       username: "",
       email: "",
@@ -122,7 +126,6 @@ const SignupForm = () => {
           Submit
         </Button>
       </Form>
-      {error && <div>Sign up failed</div>}
     </>
   );
 };
