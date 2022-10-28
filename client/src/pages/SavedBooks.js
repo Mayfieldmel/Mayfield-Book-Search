@@ -65,14 +65,14 @@ const SavedBooks = () => {
       </Jumbotron>
       <Container>
         <h2>
-          {user.savedBooks.length
+          {user.savedBooks?.length
             ? `Viewing ${user.savedBooks.length} saved ${
                 user.savedBooks.length === 1 ? "book" : "books"
               }:`
             : "You have no saved books!"}
         </h2>
         <CardColumns>
-          {user.savedBooks.map(book => {
+          {user.savedBooks?.map(book => {
             return (
               <Card key={book.bookId} border="dark">
                 {book.image ? (
